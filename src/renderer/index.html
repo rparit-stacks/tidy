@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Tidy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="gate" class="gate">
+  <div class="gate-card">
+    <img class="mark" src="logo.svg" alt="">
+    <h1>Welcome to Tidy</h1>
+    <p class="lead">Find what is really using your disk, including the files Finder hides. Two quick things first.</p>
+    <div class="setup">
+      <section class="step" id="step-fda">
+        <div class="step-mark"><svg viewBox="0 0 24 24"><circle class="ring" cx="12" cy="12" r="10"/><path class="tick" d="M7.5 12.5l3 3 6-6.5"/></svg></div>
+        <div class="step-body">
+          <h2>Full Disk Access <span class="tagr">Required</span></h2>
+          <p id="fda-text">Lets Tidy read folders macOS protects, like app data and hidden files. It only reads. Nothing is deleted without your confirmation.</p>
+          <ol class="how"><li>Open System Settings below</li><li>Turn on <b id="gate-who">Tidy</b> (not listed? click <b>+</b> and pick it, or drag it in from Finder)</li></ol>
+          <div class="step-actions"><button id="gate-open" class="btn primary">Open System Settings</button><button id="gate-show" class="btn">Show in Finder</button><button id="gate-re" class="btn flat">Check again</button></div>
+        </div>
+      </section>
+      <section class="step opt" id="step-claude">
+        <div class="step-mark"><svg viewBox="0 0 24 24"><circle class="ring" cx="12" cy="12" r="10"/><path class="tick" d="M7.5 12.5l3 3 6-6.5"/></svg></div>
+        <div class="step-body">
+          <h2>Claude Code <span class="tagr soft">Optional</span></h2>
+          <p id="claude-text">Only needed for <b>Smart scan</b>, where Claude explains what each large item is and whether it can go. Uses your own Claude login, no API key. Everything else works without it.</p>
+          <div id="claude-help" class="claude-help">
+            <div class="cmd"><code id="cmd-text">curl -fsSL https://claude.ai/install.sh | bash</code><button id="cmd-copy" class="btn flat">Copy</button></div>
+            <p class="small">Run it in Terminal, then run <code>claude</code> once and sign in. <button id="claude-docs" class="linkbtn">Installation guide</button></p>
+          </div>
+          <div class="step-actions"><button id="claude-re" class="btn flat">Check again</button></div>
+        </div>
+      </section>
+    </div>
+    <button id="gate-continue" class="btn primary big" disabled>Continue</button>
+    <button id="gate-skip" class="gate-skip">Continue with limited access</button>
+  </div>
+</div>
+
+<div class="app">
+  <aside class="sidebar" aria-label="Sections">
+    <div class="drag top"></div>
+    <div class="brand">
+      <img class="mark" src="logo-small.svg" alt="">
+      <span>Tidy</span>
+    </div>
+    <nav id="nav" class="nav"></nav>
+    <div class="side-foot">
+      <div id="fda" class="fda"></div>
+      <button id="fullscan" class="link" title="Measure everything again and ignore what Tidy remembers">Full rescan (ignore saved results)</button>
+      <button id="pick" class="link" title="Used to check which Gradle/NDK versions your projects need">Projects folder: <span id="proj">none</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="toolbar drag">
+      <div id="crumb" class="crumb">Overview</div>
+      <div class="tb-right">
+        <div class="seg nodrag" role="group" aria-label="Mode">
+          <button id="m-dry" class="on" aria-pressed="true">Dry run</button>
+          <button id="m-real" aria-pressed="false">Real delete</button>
+        </div>
+        <button id="scan" class="btn nodrag" title="Quick refresh: only places that changed are measured again (⌘R)">Scan</button>
+        <button id="smart" class="btn smart nodrag" title="Normal scan, then Claude (your logged-in Claude Code) suggests what to delete"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>Smart scan</button>
+      </div>
+    </header>
+    <div id="view" class="view"></div>
+  </main>
+</div>
+
+<div id="selbar" class="selbar" aria-live="polite">
+  <div class="selbar-in">
+    <div><b id="sb-n">0 selected</b><span id="sb-size"></span></div>
+    <button id="sb-clear" class="btn flat">Clear</button>
+    <button id="sb-go" class="btn primary">Review…</button>
+  </div>
+</div>
+
+<div id="sheet" class="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div id="sheet-body"></div></div>
+</div>
+<script src="rings.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "mac-cleaner",
+  "version": "1.0.0",
+  "description": "Find what is really filling your Mac, including the files Finder hides.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron .",
+    "icon": "env -u ELECTRON_RUN_AS_NODE electron scripts/make-icon.js",
+    "dmg": "bash scripts/make-dmg.sh"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^33.0.0"
+  },
+  "productName": "Tidy",
+  "appId": "com.rohit.tidy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rparit-stacks/tidy.git"
+  },
+  "homepage": "https://github.com/rparit-stacks/tidy#readme",
+  "bugs": {
+    "url": "https://github.com/rparit-stacks/tidy/issues"
+  }
+}

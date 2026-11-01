@@ -1,0 +1,12 @@
+.DS_Store
+.agents/
+.claude/
+.venv-dmg/
+assets/dmg-background.tiff
+assets/dmg-bg.png
+assets/dmg-bg@2x.png
+assets/icon-1024.png
+assets/icon-simple-preview.png
+dist/
+node_modules/
+skills-lock.json
